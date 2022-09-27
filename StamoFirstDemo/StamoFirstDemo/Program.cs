@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using StamoFirstDemo.Core.Contracts;
+using StamoFirstDemo.Core.Services;
 using StamoFirstDemo.Data;
 
 namespace StamoFirstDemo
@@ -19,6 +21,8 @@ namespace StamoFirstDemo
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 

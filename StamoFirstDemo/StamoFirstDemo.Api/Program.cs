@@ -1,3 +1,6 @@
+using StamoFirstDemo.Core.Contracts;
+using StamoFirstDemo.Core.Services;
+
 namespace StamoFirstDemo.Api
 {
     public class Program
@@ -11,7 +14,21 @@ namespace StamoFirstDemo.Api
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "My Web Shop",
+                    Description = "This is the best web shop",
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                    {
+                        Name = "EUPL v 1.2"
+                    }
+                });
+               // c.IncludeXmlComments("WebShopApiDocumentation.xml");
+            });
+
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 

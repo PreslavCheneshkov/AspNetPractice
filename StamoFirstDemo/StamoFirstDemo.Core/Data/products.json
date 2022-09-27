@@ -1,0 +1,32 @@
+﻿[
+  {
+    "id": "24060a37-6f8f-4767-b449-b1f0579a8611",
+    "name": "Cheese",
+    "price": "20",
+    "quantity": 50
+  },
+  {
+    "id": "565a4459-6b8e-49a1-b2a5-b7a524bd1bac",
+    "name": "Milk",
+    "price": "2.45",
+    "quantity": 150
+  },
+  {
+    "id": "6698aca8-3c28-4cc8-97ba-dbbb65e40800",
+    "name": "Eggs",
+    "price": "3.50",
+    "quantity": 25
+  },
+  {
+    "id": "b7ce4f39-f985-45a5-8a11-4409ba4075d4",
+    "name": "Bread",
+    "price": "1.90",
+    "quantity": 100
+  },
+  {
+    "id": "9321bc69-ff4c-4f0b-9205-09e1985d2744",
+    "name": "Beer",
+    "price": "2.40",
+    "quantity": 50
+  }
+]
