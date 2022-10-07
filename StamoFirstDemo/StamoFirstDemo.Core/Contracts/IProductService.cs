@@ -17,5 +17,6 @@ namespace StamoFirstDemo.Core.Contracts
         /// </summary>
         /// <returns>List of products</returns>
         Task<IEnumerable<ProductDto>> GetAll();
+        Task Add(ProductDto productDto);
     }
 }

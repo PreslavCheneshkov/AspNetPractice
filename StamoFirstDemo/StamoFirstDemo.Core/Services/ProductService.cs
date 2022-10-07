@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StamoFirstDemo.Core.Contracts;
+using StamoFirstDemo.Core.Data;
+using StamoFirstDemo.Core.Data.Models;
 using StamoFirstDemo.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -15,13 +18,15 @@ namespace StamoFirstDemo.Core.Services
     /// </summary>
     public class ProductService : IProductService
     {
+        private readonly ApplicationDbContext context;
         private readonly IConfiguration config;
         /// <summary>
         /// IoC
         /// </summary>
         /// <param name="_config">Application configuration</param>
-        public ProductService(IConfiguration _config)
+        public ProductService(IConfiguration _config, ApplicationDbContext _context)
         {
+            context = _context;
             config = _config;
         }
         /// <summary>
@@ -31,10 +36,27 @@ namespace StamoFirstDemo.Core.Services
         /// <exception cref="NotImplementedException"></exception>
         public async Task<IEnumerable<ProductDto>> GetAll()
         {
-            string dataPath = config.GetSection("DataFiles:Products").Value;
-            string data = await File.ReadAllTextAsync(dataPath);
+            return await context.Products
+                .Select(p => new ProductDto()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Quantity = p.Quantity,
+                }).ToListAsync();
+        }
 
-            return JsonConvert.DeserializeObject<IEnumerable<ProductDto>>(data);
+        public async Task Add(ProductDto productDto)
+        {
+            var product = new Product()
+            {
+                Name = productDto.Name,
+                Price = productDto.Price,
+                Quantity = productDto.Quantity
+            };
+
+            await context.Products.AddAsync(product);
+            await context.SaveChangesAsync();
         }
     }
 }
