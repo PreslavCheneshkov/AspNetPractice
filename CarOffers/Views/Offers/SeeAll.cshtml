@@ -1,0 +1,13 @@
+﻿@model List<OfferInputModel>
+
+<ul>
+@foreach(var offer in Model)
+{
+    <li>
+        <h2>@offer.Manufacturer</h2>
+        <h2>@offer.Model</h2>
+        <h2>@offer.Mileage</h2>
+        <h2>@offer.Year</h2>
+    </li>
+}
+</ul>

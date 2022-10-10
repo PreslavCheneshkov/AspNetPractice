@@ -1,30 +1,23 @@
-﻿<div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text">Please enter vehicle manufacturer:</span>
+﻿@model OfferInputModel
+
+<form>
+    <div>
+        <label asp-for="Manufacturer" >Please enter vehicle manufacturer:</label>
+        <input asp-for="Manufacturer" type="text" />
     </div>
-    <input type="text" class="form-control" aria-describedby="basic-addon3" asp-controller="Offers" asp-action="AddNew"/>
-</div>
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text">Please enter vehicle model:</span>
+    <div>
+        <label asp-for="Model">Please enter vehicle model:</label>
+        <input asp-for="Model" type="text" />
     </div>
-    <input type="text" class="form-control" aria-describedby="basic-addon3" asp-controller="Offers" asp-action="AddNew"/>
-</div>
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Pleaase enter vehicle mileage" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2">лв.</span>
-  </div>
-</div>
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text">Please enter vehicle mileage:</span>
+    <div>
+        <label asp-for="Mileage">Please enter vehicle mileage:</label>
+        <input asp-for="Mileage" type="number" />
     </div>
-    <input type="text" class="form-control" aria-describedby="basic-addon3" asp-controller="Offers" asp-action="AddNew"/>
-</div>
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text">Please enter vehicle mileage:</span>
+    <div>
+        <label asp-for="Year">Please enter vehicle year:</label>
+        <input asp-for="Year" type="number" />
     </div>
-    <input type="text" class="form-control" aria-describedby="basic-addon3" asp-controller="Offers" asp-action="AddNew"/>
-</div>
+    <div>
+        <input class="btn btn-danger" type="submit" asp-action="AddNew" asp-controller="Offers" formmethod="post"/>
+    </div>
+</form>

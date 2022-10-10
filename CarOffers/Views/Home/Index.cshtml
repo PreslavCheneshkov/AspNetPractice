@@ -4,6 +4,6 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the ultimate car buying app</h1>
-    <input class="btn-primary" type="button" value="Browse all offers" action=""/>
-    <input class=btn-secondary type="button" value="Add new offer" action="/Offers/AddNew"/>
+    <a class="btn btn-secondary" asp-action="SeeAll" asp-controller="Offers">See all available offers</a>
+    <a class="btn btn-danger" asp-action="AddNew" asp-controller="Offers">Add new offer</a>
 </div>

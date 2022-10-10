@@ -20,6 +20,8 @@ namespace CarOffers
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
