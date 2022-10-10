@@ -15,6 +15,7 @@ namespace CarOffers.Controllers
         public IActionResult NewSearch()
         {
             var search = new SearchInputModel();
+
             return View(search);
         }
         [HttpPost]

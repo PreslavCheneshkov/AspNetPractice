@@ -12,7 +12,6 @@ namespace CarOffers.Core.Models
         public string? Model { get; set; }
         public int? FromYear { get; set; }
         public int? ToYear { get; set; }
-        public int? FromMileage { get; set; }
         public int? ToMileage { get; set; }
         public decimal? FromPrice { get; set; }
         public decimal? ToPrice { get; set; }
