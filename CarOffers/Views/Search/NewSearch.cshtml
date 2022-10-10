@@ -1,0 +1,42 @@
+﻿@using CarOffers.Core.Models
+@model SearchInputModel
+
+<form>
+    <div>
+        <label asp-for="Manufacturer">Please enter vehicle manufacturer:</label>
+        <input asp-for="Manufacturer" type="text" />
+    </div>
+    <div>
+        <label asp-for="Model">Please enter vehicle model:</label>
+        <input asp-for="Model" type="text" />
+    </div>
+    <div>
+        <label asp-for="ToMileage">Please enter maximum mileage:</label>
+        <input asp-for="ToMileage" type="number" />
+    </div>
+    <div>
+        <h3>Please enter year range</h3>
+        <div>
+            <label asp-for="FromYear">From year:</label>
+            <input asp-for="FromYear" type="number" />
+        </div>
+        <div>
+            <label asp-for="ToYear">To year:</label>
+            <input asp-for="ToYear" type="number" />
+        </div>
+    </div>
+    <div>
+        <h3>Please enter price range</h3>
+        <div>
+            <label asp-for="FromPrice">From price:</label>
+            <input asp-for="FromPrice" type="number" />
+        </div>
+        <div>
+            <label asp-for="ToPrice">To price:</label>
+            <input asp-for="ToPrice" type="number" />
+        </div>
+    </div>
+    <div>
+        <input class="btn btn-danger" type="submit" asp-action="NewSearch" asp-controller="Search" formmethod="post" />
+    </div>
+</form>

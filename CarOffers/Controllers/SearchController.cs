@@ -21,7 +21,8 @@ namespace CarOffers.Controllers
         [HttpPost]
         public async Task<IActionResult> NewSearch(SearchInputModel search)
         {
-            throw new NotImplementedException();
+            var searchOffers = await searchService.NewSearch(search);
+            return View("DisplayNewSearch", searchOffers);
         }
     }
 }
