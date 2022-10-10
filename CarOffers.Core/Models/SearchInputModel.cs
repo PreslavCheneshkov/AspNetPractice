@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace CarOffers.Core.Models
 {
-    internal class SearchInputModel
+    public class SearchInputModel
     {
+        public string? Manufacturer { get; set; }
+        public string? Model { get; set; }
+        public int? FromYear { get; set; }
+        public int? ToYear { get; set; }
+        public int? FromMileage { get; set; }
+        public int? ToMileage { get; set; }
+        public decimal? FromPrice { get; set; }
+        public decimal? ToPrice { get; set; }
     }
 }
