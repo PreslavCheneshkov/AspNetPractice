@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarOffers.Core.Services
 {
-    internal interface ISearchService
+    public interface ISearchService
     {
     }
 }

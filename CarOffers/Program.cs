@@ -1,4 +1,5 @@
-using CarOffers.Data;
+using CarOffers.Core.Data;
+using CarOffers.Core.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,8 @@ namespace CarOffers
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
+            builder.Services.AddScoped<IOfferService, OfferService>();
+            builder.Services.AddScoped<ISearchService, SearchService>();
 
             var app = builder.Build();
 

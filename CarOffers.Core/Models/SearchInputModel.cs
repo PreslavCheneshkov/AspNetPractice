@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarOffers.Core.Services
+namespace CarOffers.Core.Models
 {
-    public class SearchService : ISearchService
+    internal class SearchInputModel
     {
     }
 }

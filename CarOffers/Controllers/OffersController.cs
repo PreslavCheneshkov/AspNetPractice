@@ -1,6 +1,7 @@
-﻿using CarOffers.Data;
-using CarOffers.Data.Entities;
-using CarOffers.Models;
+﻿using CarOffers.Core.Data;
+using CarOffers.Core.Data.Entities;
+using CarOffers.Core.Services;
+using CarOffers.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +10,10 @@ namespace CarOffers.Controllers
 {
     public class OffersController : Controller
     {
-        private ApplicationDbContext context;
-        public OffersController(ApplicationDbContext _context)
+        private readonly IOfferService offerService;
+        public OffersController(IOfferService _offerService)
         {
-            this.context = _context;
+            this.offerService = _offerService;
         }
         [HttpGet]
         [Authorize]
@@ -30,28 +31,14 @@ namespace CarOffers.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var offer = new Offer()
-            {
-                Manufacturer = inputModel.Manufacturer,
-                Model = inputModel.Model,
-                Mileage = inputModel.Mileage,
-                Year = inputModel.Year,
-            };
-            await context.Offers.AddAsync(offer);
-            await context.SaveChangesAsync();
+            await offerService.AddNew(inputModel);
+            
             return RedirectToAction("SeeAll");
         }
         [HttpGet]
         public async Task<IActionResult> SeeAll()
         {
-            var offers = await context.Offers
-                                        .Select(o => new OfferInputModel()
-                                        {
-                                            Manufacturer = o.Manufacturer,
-                                            Model = o.Model,
-                                            Mileage = o.Mileage,
-                                            Year = o.Year,
-                                        }).ToListAsync();
+            var offers = await offerService.GetAll();
 
             return View(offers);
         }

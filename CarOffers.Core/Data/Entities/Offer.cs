@@ -1,6 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CarOffers.Data.Entities
+namespace CarOffers.Core.Data.Entities
 {
     public class Offer
     {
@@ -16,5 +21,11 @@ namespace CarOffers.Data.Entities
         public int Mileage { get; set; }
         [Range(1940, 2100)]
         public int Year { get; set; }
+        [Required]
+        [Range(0, double.MaxValue)]
+        public decimal Price { get; set; }
+        [Required]
+        [StringLength(500)]
+        public string PictureUrl { get; set; } = null!;
     }
 }
