@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 using TaskBoardApp.Data;
 using TaskBoardApp.Models;
 
@@ -18,7 +19,38 @@ namespace TaskBoardApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var taskBoards = this.data
+                                .Boards
+                                .Select(b => b.Name)
+                                .Distinct();
+
+            var taskCounts = new List<HomeBoardModel>();
+            foreach (var boardName in taskBoards)
+            {
+                var tasksInBoard = this.data.Tasks.Where(t => t.Board.Name == boardName).Count();
+                taskCounts.Add(new HomeBoardModel()
+                {
+                    BoardName = boardName,
+                    TasksCount = tasksInBoard,
+                });
+            }
+
+            var userTasksCount = -1;
+
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                userTasksCount = this.data.Tasks.Where(t => t.OwnerId == currentUserId).Count();
+            }
+
+            var homeModel = new HomeViewModel()
+            {
+                AllTasksCount = this.data.Tasks.Count(),
+                BoardsWithTasksCount = taskCounts,
+                UserTasksCount = userTasksCount,
+            };
+
+            return View(homeModel);
         }
 
         
